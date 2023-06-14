@@ -3,12 +3,15 @@ import { initialState } from './initialState';
 
 const filterSlice=createSlice({
     name:'filter',
-    initialState:initialState,
+    initialState:initialState.filter,
     reducers:{
         filterSet(state,action){
-            state.filter=action.payload;
+            return action.payload;
+           
         }
     }
 })
+
 export const filterReducer=filterSlice.reducer;
 export const {filterSet}=filterSlice.actions;
+// contacts={visibleContacts}

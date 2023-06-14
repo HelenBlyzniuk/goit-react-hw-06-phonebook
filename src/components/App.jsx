@@ -1,33 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 
-
+import { useSelector } from 'react-redux';
 
 export function App() {
-  
-  const [contacts] = useState(() => {
-    return JSON.parse(window.localStorage.getItem('myContacts')) ?? [];
-  });
-  const [filter] = useState('');
 
-  
-
+  const filterState=useSelector(state=>state.filters)
+  const contacts =useSelector(state=>state.contacts)
  
-
-  
-
-  useEffect(() => {
-    localStorage.setItem('myContacts', JSON.stringify(contacts));
-  }, [contacts]);
-
-  const normalizedFilter = filter.toLowerCase();
+  const normalizedFilter = filterState.toLowerCase();
   const visibleContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(normalizedFilter)
-  );
+    contact.name.toLowerCase().includes(normalizedFilter));
+  
 
   return (
     <div
@@ -47,7 +35,7 @@ export function App() {
 
       <h2>Contacts</h2>
 
-      <Filter value={filter}  />
+      <Filter  />
       <ContactList contacts={visibleContacts}  />
     </div>
   );
