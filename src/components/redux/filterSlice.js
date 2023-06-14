@@ -3,10 +3,10 @@ import { initialState } from './initialState';
 
 const filterSlice=createSlice({
     name:'filter',
-    initialState:initialState.filter,
+    initialState:initialState,
     reducers:{
         filterSet(state,action){
-            state=action.payload.toLowerCase();
+            state.filter=action.payload;
         }
     }
 })
