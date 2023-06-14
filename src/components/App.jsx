@@ -1,43 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { nanoid } from 'nanoid';
+
 
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 
+
+
 export function App() {
-  const [contacts, setContacts] = useState(() => {
+  
+  const [contacts] = useState(() => {
     return JSON.parse(window.localStorage.getItem('myContacts')) ?? [];
   });
-  const [filter, setFilter] = useState('');
+  const [filter] = useState('');
 
-  const addNumber = ({ name, number }) => {
-    const isContact = contacts.filter(
-      contact => contact.name.toLowerCase() === name.toLowerCase()
-    );
-    if (isContact.length > 0) {
-      alert('The contact has already existed');
-      return;
-    } else {
-      const contact = {
-        name,
-        number,
-        id: nanoid(),
-      };
+  
 
-      setContacts([contact, ...contacts]);
-    }
-  };
+ 
 
-  const removeContact = id => {
-    const removedContact = contacts.filter(contact => contact.id !== id);
-
-    setContacts([...removedContact]);
-  };
-
-  const onFilterChange = e => {
-    setFilter(e.currentTarget.value);
-  };
+  
 
   useEffect(() => {
     localStorage.setItem('myContacts', JSON.stringify(contacts));
@@ -62,12 +43,12 @@ export function App() {
     >
       <h1>Phonebook</h1>
 
-      <ContactForm onSubmit={addNumber} />
+      <ContactForm  />
 
       <h2>Contacts</h2>
 
-      <Filter value={filter} onFilterChange={onFilterChange} />
-      <ContactList contacts={visibleContacts} getId={removeContact} />
+      <Filter value={filter}  />
+      <ContactList contacts={visibleContacts}  />
     </div>
   );
 }

@@ -1,10 +1,17 @@
-import PropTypes from 'prop-types';
+
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { removeContact } from 'components/redux/contactsSlice.js';
 
 import { ListContainer, ListItem, ListButton } from './ContactList.styled.jsx';
 
-export function ContactList({ contacts, getId }) {
+export function ContactList() {
+  const contacts=useSelector(state=>state.contacts);
+  const dispatch=useDispatch();
   const handleClick = e => {
-    getId(e.currentTarget.id);
+    dispatch(removeContact(e.currentTarget.id));
+   
+    
   };
 
   return (
@@ -27,13 +34,4 @@ export function ContactList({ contacts, getId }) {
   );
 }
 
-ContactList.propTypes = {
-  getId: PropTypes.func.isRequired,
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-      id: PropTypes.string.isRequired,
-    })
-  ),
-};
+
