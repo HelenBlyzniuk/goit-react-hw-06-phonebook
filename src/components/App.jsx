@@ -5,17 +5,9 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 
-import { useSelector } from 'react-redux';
+
 
 export function App() {
-
-  const filterState=useSelector(state=>state.filters)
-  const contacts =useSelector(state=>state.contacts)
- 
-  const normalizedFilter = filterState.toLowerCase();
-  const visibleContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(normalizedFilter));
-  
 
   return (
     <div
@@ -36,7 +28,7 @@ export function App() {
       <h2>Contacts</h2>
 
       <Filter  />
-      <ContactList contacts={visibleContacts}  />
+      <ContactList  />
     </div>
   );
 }

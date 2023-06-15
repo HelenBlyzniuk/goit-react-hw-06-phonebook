@@ -10,11 +10,13 @@ const contactSlice = createSlice({
         contact =>
           contact.name.toLowerCase() === action.payload.name.toLowerCase()
       );
+     
       if (isContact.length > 0) {
         alert('The contact has already existed');
         return;
       } else {
         state.push(action.payload);
+       
       }
     },
     removeContact(state, action) {

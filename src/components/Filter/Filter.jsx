@@ -2,17 +2,18 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { FilterContainer, FilterInput } from './Filter.styled';
 import { filterSet } from 'components/redux/filterSlice';
+import { useSelector } from 'react-redux';
 
 
 
 
 export const Filter = () => {
   const dispatch=useDispatch();
-  
+  const filterState=useSelector(state=>state.filters)
 
   const handleChange=(e)=>{
-   
-    dispatch(filterSet(e.target.value));
+   const value=e.target.value
+    dispatch(filterSet(value));
       
   }
   
@@ -23,6 +24,8 @@ export const Filter = () => {
         type="text"
         placeholder="...name"
         onChange={handleChange}
+        value={filterState}
+        
       />
     </FilterContainer>
   );

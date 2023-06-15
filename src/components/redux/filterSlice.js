@@ -14,4 +14,3 @@ const filterSlice=createSlice({
 
 export const filterReducer=filterSlice.reducer;
 export const {filterSet}=filterSlice.actions;
-// contacts={visibleContacts}
